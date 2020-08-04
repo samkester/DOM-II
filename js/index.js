@@ -57,7 +57,7 @@ function randomColor(){
 }
 
 document.querySelector("h1").addEventListener("click", event => event.target.style.color = randomColor());
-document.querySelector("h1").addEventListener("doubleclick", event => event.target.style.color = randomColor());
+document.querySelector("h1").addEventListener("dblclick", event => event.target.style.color = randomColor());
 
 // event listeners #7 and #8 - make links grow on focus and shrink when unfocused
 
@@ -65,3 +65,28 @@ document.querySelectorAll(".nav-link").forEach(item => item.addEventListener("fo
 
 document.querySelectorAll(".nav-link").forEach(item => item.addEventListener("blur", event => event.target.style.fontSize = "1.6rem"));
 
+// event listener #9 - toggle color of the main text when pressing shift
+
+const mainTexts = document.querySelectorAll(".text-content");
+
+const color1 = "#17A2B8";
+const color2 = "#212529";
+let colorChanged = false;
+
+document.addEventListener("keydown", event => {
+    //console.log(event.key);
+    if(event.key === "Shift")
+    {
+        let color = color1;
+        if(colorChanged)
+        {
+            color = color2;
+            colorChanged = false;
+        }
+        else
+        {
+            colorChanged = true;
+        }
+        mainTexts.forEach(item => item.style.color = color);
+    }
+});
