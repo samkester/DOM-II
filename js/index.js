@@ -25,7 +25,7 @@ let image2offset = 0;
 document.querySelector("#img-2").addEventListener("wheel", event => {
     event.preventDefault(); // stops the page itself from scrolling
     image2offset += event.deltaY;
-    console.log(image2offset);
+    //console.log(image2offset);
     event.target.style.objectPosition = `0 ${image2offset}px`;
 });
 
@@ -57,7 +57,6 @@ function randomColor(){
 }
 
 document.querySelector("h1").addEventListener("click", event => event.target.style.color = randomColor());
-document.querySelector("h1").addEventListener("dblclick", event => event.target.style.color = randomColor());
 
 // event listeners #7 and #8 - make links grow on focus and shrink when unfocused
 
@@ -102,5 +101,24 @@ function toggleVisibility(item){
 
 destinations.forEach(item => {
     item.querySelector("p").style.visibility = "hidden";
-    item.querySelector("h4").addEventListener("click", event => toggleVisibility(event.target.parentElement.querySelector("p")));
+    item.querySelector("h4").addEventListener("click", event => {
+        event.stopPropagation(); // this line added for the next requirement
+        toggleVisibility(event.target.parentElement.querySelector("p"))
+    });
 });
+
+// prevent an event from propagating out of the listener
+
+// clicking somewhere in a destination div OTHER THAN its header will always hide that div's paragraph
+// if allowed to propagate, this would automatically re-hide the paragraph every time it was shown
+
+destinations.forEach(item => {
+    item.addEventListener("click", event => {
+        //console.log(event.currentTarget); // locate the object whose event listener was called, NOT the primary target of the click
+        event.currentTarget.querySelector("p").style.visibility = "hidden";
+    });
+});
+
+// prevent links from resetting the page
+
+document.querySelectorAll("a").forEach(item => item.addEventListener("click", event => event.preventDefault()));
