@@ -90,3 +90,17 @@ document.addEventListener("keydown", event => {
         mainTexts.forEach(item => item.style.color = color);
     }
 });
+
+// event listener #10 - click on a destination heading to see text
+
+const destinations = document.querySelectorAll(".destination");
+
+function toggleVisibility(item){
+    if(item.style.visibility === "hidden") item.style.visibility = "visible";
+    else item.style.visibility = "hidden";
+}
+
+destinations.forEach(item => {
+    item.querySelector("p").style.visibility = "hidden";
+    item.querySelector("h4").addEventListener("click", event => toggleVisibility(event.target.parentElement.querySelector("p")));
+});
