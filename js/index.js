@@ -43,6 +43,24 @@ lowerImage.addEventListener("mouseout", event => { // two handlers are required 
     event.target.style.opacity = "100%";
 });
 
+// event listener #6 - randomly change the heading color on click
+
+function randomColor(){
+    // return a string representing a random hex color
+    let result = "#"; // CSS prefix for a hex literal
+    for(let i = 0; i < 3; i++)
+    {
+        result += (Math.floor(Math.random() * 256)).toString(16);
+    }
+    //console.log(result);
+    return result;
+}
+
+document.querySelector("h1").addEventListener("click", event => event.target.style.color = randomColor());
+document.querySelector("h1").addEventListener("doubleclick", event => event.target.style.color = randomColor());
+
+// event listener #7 - 
+
 //document.querySelector("#img-1").addEventListener("click", event => event.target.style.border = "5px solid pink");
 
 
