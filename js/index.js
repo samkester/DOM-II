@@ -29,6 +29,20 @@ document.querySelector("#img-2").addEventListener("wheel", event => {
     event.target.style.objectPosition = `0 ${image2offset}px`;
 });
 
+// event listeners #4 and #5 - change bottom image opacity on mouseover
+
+const lowerImage = document.querySelector("#lower-img");
+
+lowerImage.addEventListener("mouseover", event => {
+    event.target.style.transition = "opacity 4s";
+    event.target.style.opacity = "20%";
+});
+
+lowerImage.addEventListener("mouseout", event => { // two handlers are required because events are "WHEN this happens", not "WHILE this is true" (as the :hover psuedo-class is)
+    event.target.style.transition = "opacity 1s 1s"; // on the other hand, this makes asymmetrical effects very easy
+    event.target.style.opacity = "100%";
+});
+
 //document.querySelector("#img-1").addEventListener("click", event => event.target.style.border = "5px solid pink");
 
 
