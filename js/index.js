@@ -59,8 +59,9 @@ function randomColor(){
 document.querySelector("h1").addEventListener("click", event => event.target.style.color = randomColor());
 document.querySelector("h1").addEventListener("doubleclick", event => event.target.style.color = randomColor());
 
-// event listener #7 - 
+// event listeners #7 and #8 - make links grow on focus and shrink when unfocused
 
-//document.querySelector("#img-1").addEventListener("click", event => event.target.style.border = "5px solid pink");
+document.querySelectorAll(".nav-link").forEach(item => item.addEventListener("focus", event => event.target.style.fontSize = "3.2rem"));
 
+document.querySelectorAll(".nav-link").forEach(item => item.addEventListener("blur", event => event.target.style.fontSize = "1.6rem"));
 
